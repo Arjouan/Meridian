@@ -1,0 +1,92 @@
+// Prisma schema — the database model.
+// Docs: https://pris.ly/d/prisma-schema
+//
+// Phase 1 core domain: Vessels, Ports, Containers.
+// Voyages, port calls, tracking events (TimescaleDB) and emissions arrive in later phases.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------- Enums ----------
+
+enum VesselType {
+  CONTAINER_SHIP
+  BULK_CARRIER
+  TANKER
+  GENERAL_CARGO
+  OTHER
+}
+
+enum VesselStatus {
+  IN_SERVICE
+  AT_PORT
+  UNDER_MAINTENANCE
+  LAID_UP
+}
+
+enum ContainerType {
+  DRY_20
+  DRY_40
+  HIGH_CUBE_40
+  REEFER_40
+  TANK
+  OPEN_TOP
+}
+
+enum ContainerStatus {
+  EMPTY
+  IN_YARD
+  LOADED
+  IN_TRANSIT
+  DISCHARGED
+  DELIVERED
+}
+
+// ---------- Models ----------
+
+model Vessel {
+  id          String       @id @default(cuid())
+  imo         String       @unique // IMO number, e.g. "9812445"
+  name        String
+  type        VesselType   @default(CONTAINER_SHIP)
+  capacityTeu Int? // capacity in TEU
+  flag        String? // flag state
+  status      VesselStatus @default(IN_SERVICE)
+  containers  Container[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Port {
+  id        String      @id @default(cuid())
+  locode    String      @unique // UN/LOCODE, e.g. "FRLEH"
+  name      String
+  country   String // ISO country code, e.g. "FR"
+  latitude  Float
+  longitude Float
+  // A real PostGIS geometry(Point, 4326) column is added via a raw SQL migration in Phase 1;
+  // lat/lng are kept here for convenience and API responses. See docs/ARCHITECTURE.md.
+  containers Container[]
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+}
+
+model Container {
+  id            String          @id @default(cuid())
+  isoNumber     String          @unique // ISO 6346, e.g. "MSCU7045312"
+  type          ContainerType   @default(DRY_40)
+  ownerCode     String? // owner/BIC code
+  status        ContainerStatus @default(EMPTY)
+  currentPort   Port?           @relation(fields: [currentPortId], references: [id])
+  currentPortId String?
+  vessel        Vessel?         @relation(fields: [vesselId], references: [id])
+  vesselId      String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+}
