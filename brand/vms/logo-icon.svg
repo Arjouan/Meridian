@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="VMS icon">
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 41 C 17 30, 26 30, 32 40 C 38 50, 47 50, 55 40" stroke="#15294C" stroke-width="5"/>
+    <path d="M33 29 C 41 22, 50 23, 56 30" stroke="#1E88E5" stroke-width="4.2"/>
+  </g>
+  <path d="M26 44 Q 32 58 38 44 Z" fill="#15294C"/>
+</svg>
