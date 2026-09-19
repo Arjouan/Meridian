@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    name: Repository checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify required project files exist
+        run: |
+          set -e
+          for f in README.md LICENSE ROADMAP.md CHANGELOG.md .env.example .gitignore; do
+            if [ -f "$f" ]; then
+              echo "found $f"
+            else
+              echo "MISSING $f"; exit 1
+            fi
+          done
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          # Enable npm caching once you've committed a package-lock.json:
+          #   cache: npm
+
+      - name: Install dependencies
+        # Switch to `npm ci` once package-lock.json is committed (after your first `npm install`).
+        run: npm install
+
+      - name: Generate Prisma client
+        run: npm run db:generate
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
