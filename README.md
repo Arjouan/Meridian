@@ -23,9 +23,26 @@ voyages, tracks each container's journey in real time, flags vessel certificates
 expire, and estimates CO&#8322; per voyage and per container. Built to be modern, fast, map-first,
 open-source, and self-hostable.
 
-> A personal project built to learn, to serve as a portfolio piece, and to potentially grow into a
-> real product. See [`ROADMAP.md`](ROADMAP.md) for the plan, [`CHANGELOG.md`](CHANGELOG.md) for
-> progress, and [`docs/`](docs/) for the full launch plan.
+## Why this project
+
+Logistics — and maritime shipping in particular — is a genuine personal interest of mine: the scale
+of global trade, how much of it funnels through a small number of critical ports and choke points,
+and how much real complexity (tracking, compliance, emissions accounting) hides behind something as
+simple-sounding as "the ship arrives Tuesday." Building a real vessel/container tracking system was
+a way to pair that interest in the logistics domain with a serious, self-directed learning project.
+
+It's also deliberately ambitious on the technical side on purpose: geospatial data (PostGIS),
+time-series tracking (TimescaleDB), a proper NestJS/Prisma backend, and a Next.js frontend with a
+live map — stack choices picked specifically because they don't come up in typical coursework, and
+because they're closer to what a real logistics platform runs in production.
+
+Beyond the learning value, the goal is for this to become a genuine portfolio centrepiece: something
+that models an operations problem the way it actually behaves, not another todo-list clone. If it
+clears that bar, there's a real path for it to grow into an actual self-hostable product for small
+and regional carriers who are underserved by expensive enterprise logistics software.
+
+See [`ROADMAP.md`](ROADMAP.md) for the plan, [`CHANGELOG.md`](CHANGELOG.md) for progress, and
+[`docs/`](docs/) for the full launch plan.
 
 ## Highlights
 
