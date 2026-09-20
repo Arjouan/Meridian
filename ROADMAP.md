@@ -7,7 +7,7 @@ Legend: ✅ done · 🚧 in progress · ⬜ not started
 
 ---
 
-## Phase 0 — Foundations & tooling · 🚧
+## Phase 0 — Foundations & tooling · ✅
 - ✅ Monorepo layout (`apps/api`, `apps/web`, `packages/shared`)
 - ✅ `.gitignore`, `.env.example`, `README`, `LICENSE`, roadmap & changelog
 - ✅ `docker-compose.yml` (PostgreSQL + PostGIS, Redis)
