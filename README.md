@@ -1,16 +1,16 @@
 <p align="center">
-  <img src="assets/logo-icon.svg" width="88" alt="logo">
+  <img src="assets/logo-icon.svg" width="88" alt="Meridian logo">
 </p>
 
-<h1 align="center">Maritime Logistics Platform</h1>
+<h1 align="center">Meridian</h1>
 
 <p align="center">
-  <strong>Open, real-time container visibility &amp; vessel emissions for small and regional carriers.</strong><br>
+  <strong>Vessel Management System (VMS) for maritime logistics</strong> &mdash; real-time container
+  visibility &amp; vessel emissions for small and regional carriers.<br>
   See every container, know every ETA, and prove every tonne of CO&#8322; &mdash; in one system.
 </p>
 
 <p align="center">
-  <em>Working name (undecided):</em> <strong>VMS</strong> &middot; <strong>PortFlow</strong> &middot; <strong>Meridian</strong> &nbsp;|&nbsp;
   License: <strong>AGPL-3.0</strong> &nbsp;|&nbsp; Status: <strong>Phase 0 &mdash; scaffolding</strong>
 </p>
 
@@ -23,9 +23,26 @@ voyages, tracks each container's journey in real time, flags vessel certificates
 expire, and estimates CO&#8322; per voyage and per container. Built to be modern, fast, map-first,
 open-source, and self-hostable.
 
-> A personal project built to learn, to serve as a portfolio piece, and to potentially grow into a
-> real product. See [`ROADMAP.md`](ROADMAP.md) for the plan, [`CHANGELOG.md`](CHANGELOG.md) for
-> progress, and [`docs/`](docs/) for the full launch plan.
+## Why this project
+
+Logistics — and maritime shipping in particular — is a genuine personal interest of mine: the scale
+of global trade, how much of it funnels through a small number of critical ports and choke points,
+and how much real complexity (tracking, compliance, emissions accounting) hides behind something as
+simple-sounding as "the ship arrives Tuesday." Building a real vessel/container tracking system was
+a way to pair that interest in the logistics domain with a serious, self-directed learning project.
+
+It's also deliberately ambitious on the technical side on purpose: geospatial data (PostGIS),
+time-series tracking (TimescaleDB), a proper NestJS/Prisma backend, and a Next.js frontend with a
+live map — stack choices picked specifically because they don't come up in typical coursework, and
+because they're closer to what a real logistics platform runs in production.
+
+Beyond the learning value, the goal is for this to become a genuine portfolio centrepiece: something
+that models an operations problem the way it actually behaves, not another todo-list clone. If it
+clears that bar, there's a real path for it to grow into an actual self-hostable product for small
+and regional carriers who are underserved by expensive enterprise logistics software.
+
+See [`ROADMAP.md`](ROADMAP.md) for the plan, [`CHANGELOG.md`](CHANGELOG.md) for progress, and
+[`docs/`](docs/) for the full launch plan.
 
 ## Highlights
 
@@ -85,7 +102,7 @@ npm run dev                  # API + web
 ├─ prisma/             # schema.prisma (+ migrations)
 ├─ docker/             # DB init scripts (PostGIS)
 ├─ assets/             # shared brand asset used by this README
-├─ brand/              # candidate identities (name TBD): vms / portflow / meridian
+├─ brand/              # Meridian identity: logo, brand guide
 ├─ docs/               # architecture, tech stack, getting started, launch plan
 ├─ .github/workflows/  # CI
 ├─ docker-compose.yml  # PostgreSQL/PostGIS + Redis
@@ -125,9 +142,10 @@ One-liners in [`scripts/`](scripts/) (both PowerShell `.ps1` and Bash `.sh`):
 
 ## Brand
 
-The final name is undecided between **VMS**, **PortFlow**, and **Meridian** — all three share the
-same navy + blue design system, so the app theme is identical regardless. Each identity's logo and
-brand guide lives under [`brand/`](brand/).
+**Meridian** — Vessel Management System (VMS). Navy + blue, line-art design system; logo and brand
+guide live under [`brand/meridian/`](brand/meridian/). Earlier naming candidates (VMS, PortFlow) and
+the original Meridian globe concept are kept for the record under
+[`docs/brand-exploration/`](docs/brand-exploration/).
 
 ## Roadmap & changelog
 

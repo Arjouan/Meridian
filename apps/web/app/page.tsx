@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main className="mx-auto flex min-h-screen max-w-3xl flex-col justify-center px-6 py-16">
       <div className="mb-6">
-        <svg viewBox="0 0 64 64" width="72" height="72" role="img" aria-label="logo">
+        <svg viewBox="0 0 64 64" width="72" height="72" role="img" aria-label="Meridian icon">
           <g fill="none" strokeLinecap="round" strokeLinejoin="round">
             <path d="M9 41 C 17 30, 26 30, 32 40 C 38 50, 47 50, 55 40" stroke="#15294C" strokeWidth="5" />
             <path d="M33 29 C 41 22, 50 23, 56 30" stroke="#1E88E5" strokeWidth="4.2" />
@@ -13,12 +13,14 @@ export default function Home() {
         </svg>
       </div>
 
-      <h1 className="text-4xl font-extrabold tracking-tight text-navy">
-        Maritime Logistics Platform
-      </h1>
+      <p className="text-xs font-semibold uppercase tracking-widest text-blue">
+        Vessel Management System
+      </p>
+      <h1 className="text-4xl font-extrabold tracking-tight text-navy">Meridian</h1>
       <p className="mt-3 max-w-xl text-lg text-slate-600">
-        Open, real-time container visibility &amp; vessel emissions for small and regional carriers.
-        This is the Phase&nbsp;0 skeleton — the map, tracking, and dashboards come next.
+        Vessel Management System (VMS) for maritime logistics — real-time container visibility
+        &amp; vessel emissions for small and regional carriers. This is the Phase&nbsp;0 skeleton —
+        the map, tracking, and dashboards come next.
       </p>
 
       <div className="mt-8 flex flex-wrap gap-3">

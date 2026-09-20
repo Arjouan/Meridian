@@ -40,9 +40,11 @@ and this project aims to follow [Semantic Versioning](https://semver.org/).
 - Database verified end-to-end: PostGIS container starts healthy, the migration applies, and the
   `Vessel`, `Port`, `Container` tables are created (PostGIS extension confirmed).
 
-### Notes
-- Final project name not yet chosen (VMS / PortFlow / Meridian). All three share the same
-  navy + blue design system, so the app theme is identical regardless of the final choice.
+### Changed
+- Finalized the project identity: **Meridian**, tagline "Vessel Management System" (VMS),
+  combining the Meridian name with the VMS wave/pennant logo mark. Updated `brand/meridian/`,
+  `README.md`, `START-HERE.md`, and the web app's title/heading accordingly. Archived the
+  PortFlow candidate and the earlier Meridian globe concept under `docs/brand-exploration/`.
 
 ---
 

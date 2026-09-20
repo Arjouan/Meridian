@@ -32,5 +32,5 @@ Read **[`docs/LEARNING.md`](docs/LEARNING.md)**, then do the exercises in
 - The whole story so far: `../claude-saves/SESSION-LOG.md` (outside this repo)
 
 ## Status
-Phase 0 complete + Vessels feature done (build, DB, API, tests all green). Final name still to
-pick: **VMS / PortFlow / Meridian**.
+Phase 0 complete + Vessels feature done (build, DB, API, tests all green). Name finalized:
+**Meridian** — Vessel Management System (VMS).
