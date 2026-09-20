@@ -132,7 +132,20 @@ npm run dev                  # API + web
 
 ## Scripts
 
-One-liners in [`scripts/`](scripts/) (both PowerShell `.ps1` and Bash `.sh`):
+**Double-click launchers** (repo root) — the fastest way to run this day to day, no terminal
+required:
+- **`Launch Meridian`** — starts the database/cache, runs first-time setup automatically the very
+  first time, then starts the app and (on macOS) opens it in your browser.
+- **`Rebuild Meridian`** — regenerates the Prisma client and does a full production build. Not
+  needed for ordinary code edits (those hot-reload automatically while `Launch Meridian` is
+  running) — use this after editing `prisma/schema.prisma`, or to verify everything still compiles.
+- **`Stop Meridian`** — stops the database/cache containers. Close the `Launch Meridian` window (or
+  press Ctrl+C in it) to stop the dev servers themselves.
+
+Each comes as a `.command` (macOS/Linux) and `.bat` (Windows) — just double-click the one for your OS.
+
+One-liners in [`scripts/`](scripts/) (both PowerShell `.ps1` and Bash `.sh`), used under the hood by
+the launchers above and available directly from a terminal:
 
 | Task | Windows | macOS / Linux / WSL |
 |---|---|---|
