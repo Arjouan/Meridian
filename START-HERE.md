@@ -2,6 +2,12 @@
 
 A 30-second orientation. Whether you're new or coming back after a break, this tells you where to go.
 
+## Fastest path: double-click it
+No terminal needed for day-to-day use — double-click **`Launch Meridian`** (`.command` on
+macOS/Linux, `.bat` on Windows) at the repo root. It starts the database, runs first-time setup
+automatically if this is the first launch, and opens the app in your browser. See the "Scripts"
+section in [`README.md`](README.md) for the other launchers (`Rebuild Meridian`, `Stop Meridian`).
+
 ## Coming back after time away?
 Follow **[`docs/DEV-WORKFLOW.md` → §9 "Resuming after time away"](docs/DEV-WORKFLOW.md#9-resuming-after-time-away)**.
 Short version, from this folder:

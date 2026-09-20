@@ -33,12 +33,20 @@ and this project aims to follow [Semantic Versioning](https://semver.org/).
 - ESLint configured for both apps (`npm run lint`); CI now runs lint + test + build.
 - `docs/GIT-GUIDE.md` — Git/GitHub good-habits guide (branching, commit format, pushing, PRs).
 - `docs/MARKET-STUDY.md` — evidence-based market study (size, drivers, competitors, impact, sources).
+- Double-click launchers at the repo root (`.command` for macOS/Linux, `.bat` for Windows):
+  `Launch Meridian` (starts DB/cache, runs first-time setup automatically if needed, opens the
+  browser), `Rebuild Meridian` (Prisma generate + full production build), and `Stop Meridian`
+  (stops the DB/cache containers).
 
 ### Verified
 - Full monorepo builds cleanly in a Node 20 container: `npm install` + `prisma generate` +
   `nest build` (API) + `next build` (web) all succeed.
 - Database verified end-to-end: PostGIS container starts healthy, the migration applies, and the
   `Vessel`, `Port`, `Container` tables are created (PostGIS extension confirmed).
+- On a fresh machine (no Docker/Colima installed): installed Colima + docker/docker-compose via
+  Homebrew, ran `Launch Meridian.command` end-to-end (DB up, migrate, seed, API + web dev servers),
+  confirmed `/health`, `/vessels`, `/docs`, and the web app all respond correctly, `npm test`
+  passes, and `Rebuild Meridian.command` builds cleanly alongside the running dev servers.
 
 ### Changed
 - Finalized the project identity: **Meridian**, tagline "Vessel Management System" (VMS),
