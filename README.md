@@ -1,16 +1,16 @@
 <p align="center">
-  <img src="assets/logo-icon.svg" width="88" alt="logo">
+  <img src="assets/logo-icon.svg" width="88" alt="Meridian logo">
 </p>
 
-<h1 align="center">Maritime Logistics Platform</h1>
+<h1 align="center">Meridian</h1>
 
 <p align="center">
-  <strong>Open, real-time container visibility &amp; vessel emissions for small and regional carriers.</strong><br>
+  <strong>Vessel Management System (VMS) for maritime logistics</strong> &mdash; real-time container
+  visibility &amp; vessel emissions for small and regional carriers.<br>
   See every container, know every ETA, and prove every tonne of CO&#8322; &mdash; in one system.
 </p>
 
 <p align="center">
-  <em>Working name (undecided):</em> <strong>VMS</strong> &middot; <strong>PortFlow</strong> &middot; <strong>Meridian</strong> &nbsp;|&nbsp;
   License: <strong>AGPL-3.0</strong> &nbsp;|&nbsp; Status: <strong>Phase 0 &mdash; scaffolding</strong>
 </p>
 
@@ -85,7 +85,7 @@ npm run dev                  # API + web
 ├─ prisma/             # schema.prisma (+ migrations)
 ├─ docker/             # DB init scripts (PostGIS)
 ├─ assets/             # shared brand asset used by this README
-├─ brand/              # candidate identities (name TBD): vms / portflow / meridian
+├─ brand/              # Meridian identity: logo, brand guide
 ├─ docs/               # architecture, tech stack, getting started, launch plan
 ├─ .github/workflows/  # CI
 ├─ docker-compose.yml  # PostgreSQL/PostGIS + Redis
@@ -125,9 +125,10 @@ One-liners in [`scripts/`](scripts/) (both PowerShell `.ps1` and Bash `.sh`):
 
 ## Brand
 
-The final name is undecided between **VMS**, **PortFlow**, and **Meridian** — all three share the
-same navy + blue design system, so the app theme is identical regardless. Each identity's logo and
-brand guide lives under [`brand/`](brand/).
+**Meridian** — Vessel Management System (VMS). Navy + blue, line-art design system; logo and brand
+guide live under [`brand/meridian/`](brand/meridian/). Earlier naming candidates (VMS, PortFlow) and
+the original Meridian globe concept are kept for the record under
+[`docs/brand-exploration/`](docs/brand-exploration/).
 
 ## Roadmap & changelog
 
