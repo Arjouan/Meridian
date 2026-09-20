@@ -3,16 +3,18 @@ setlocal
 cd /d "%~dp0"
 
 docker info >nul 2>&1
-if errorlevel 1 (
-  echo Starting Docker Desktop...
-  start "" "%ProgramFiles%\Docker\Docker\Docker Desktop.exe"
-  echo Waiting for Docker to be ready...
-  :waitdocker
-  timeout /t 2 >nul
-  docker info >nul 2>&1
-  if errorlevel 1 goto waitdocker
-)
+if not errorlevel 1 goto dockerready
 
+echo Starting Docker Desktop...
+start "" "%ProgramFiles%\Docker\Docker\Docker Desktop.exe"
+echo Waiting for Docker to be ready...
+
+:waitdocker
+timeout /t 2 >nul
+docker info >nul 2>&1
+if errorlevel 1 goto waitdocker
+
+:dockerready
 if not exist node_modules (
   echo First run detected - running full setup, this can take a few minutes...
   powershell -ExecutionPolicy Bypass -File scripts\setup.ps1
