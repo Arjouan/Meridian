@@ -18,6 +18,14 @@ const ports = [
   { locode: 'SGSIN', name: 'Port of Singapore', country: 'SG', latitude: 1.26, longitude: 103.83 },
 ] as const;
 
+// Containers point at a vessel (by IMO) and/or a port (by LOCODE); ids are looked up at seed time.
+const containers = [
+  { isoNumber: 'MSCU7045312', type: 'DRY_40', ownerCode: 'MSCU', status: 'IN_TRANSIT', vesselImo: '9703291', portLocode: null },
+  { isoNumber: 'CMAU1234565', type: 'HIGH_CUBE_40', ownerCode: 'CMAU', status: 'IN_YARD', vesselImo: null, portLocode: 'FRLEH' },
+  { isoNumber: 'MSKU9070323', type: 'REEFER_40', ownerCode: 'MSKU', status: 'LOADED', vesselImo: '9321483', portLocode: 'NLRTM' },
+  { isoNumber: 'TGHU3456789', type: 'DRY_20', ownerCode: 'TGHU', status: 'EMPTY', vesselImo: null, portLocode: null },
+] as const;
+
 async function main() {
   for (const v of vessels) {
     await prisma.vessel.upsert({
@@ -38,6 +46,19 @@ async function main() {
   }
   
   console.log(`Seeded ${ports.length} ports.`);
+
+  for (const { vesselImo, portLocode, ...c } of containers) {
+    const vessel = vesselImo ? await prisma.vessel.findUnique({ where: { imo: vesselImo } }) : null;
+    const port = portLocode ? await prisma.port.findUnique({ where: { locode: portLocode } }) : null;
+    const data = { ...c, vesselId: vessel?.id ?? null, currentPortId: port?.id ?? null };
+    await prisma.container.upsert({
+      where: { isoNumber: c.isoNumber },
+      update: data,
+      create: data,
+    });
+  }
+
+  console.log(`Seeded ${containers.length} containers.`);
 }
 
 main()
