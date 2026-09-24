@@ -37,6 +37,15 @@ and this project aims to follow [Semantic Versioning](https://semver.org/).
   `Launch Meridian` (starts DB/cache, runs first-time setup automatically if needed, opens the
   browser), `Rebuild Meridian` (Prisma generate + full production build), and `Stop Meridian`
   (stops the DB/cache containers).
+- **Ports feature:** full CRUD API (`apps/api/src/ports/`) with lat/lng range validation, 3 seeded
+  ports, and a `/ports` page linked from the home page.
+- **Containers feature:** full CRUD API (`apps/api/src/containers/`) with enum validation and the
+  related vessel/port included in responses, 4 seeded containers, and a `/containers` page linked
+  from the home page.
+
+### Fixed
+- Creating or updating a container with an unknown `vesselId` or `currentPortId` now returns a 400
+  with a clear message instead of a 500.
 
 ### Verified
 - Full monorepo builds cleanly in a Node 20 container: `npm install` + `prisma generate` +

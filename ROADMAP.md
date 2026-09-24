@@ -19,9 +19,9 @@ Legend: ✅ done · 🚧 in progress · ⬜ not started
 
 ## Phase 1 — Core domain & CRUD API · 🚧
 - ✅ Prisma schema: Vessels, Containers, Ports (+ initial migration, verified against PostGIS)
-- 🚧 REST CRUD endpoints + validation — **Vessels done** (reference slice); Ports & Containers = your turn
+- ✅ REST CRUD endpoints + validation — Vessels (reference slice), Ports & Containers
 - ⬜ Unit tests for the service layer
-- 🚧 Realistic seed data — vessels seeded; add ports & containers (see `docs/YOUR-TURN.md`)
+- ✅ Realistic seed data — vessels, ports & containers (containers linked to vessels/ports)
 
 **Milestone:** manage vessels, containers, and ports through the API on a real database.
 
