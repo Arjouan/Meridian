@@ -17,10 +17,10 @@ Legend: ✅ done · 🚧 in progress · ⬜ not started
 
 **Milestone:** one command spins up the whole stack locally; CI is green.
 
-## Phase 1 — Core domain & CRUD API · 🚧
+## Phase 1 — Core domain & CRUD API · ✅
 - ✅ Prisma schema: Vessels, Containers, Ports (+ initial migration, verified against PostGIS)
 - ✅ REST CRUD endpoints + validation — Vessels (reference slice), Ports & Containers
-- ⬜ Unit tests for the service layer
+- ✅ Unit tests for the service layer — Vessels, Ports & Containers (Jest, mocked Prisma)
 - ✅ Realistic seed data — vessels, ports & containers (containers linked to vessels/ports)
 
 **Milestone:** manage vessels, containers, and ports through the API on a real database.

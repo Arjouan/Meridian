@@ -42,6 +42,8 @@ and this project aims to follow [Semantic Versioning](https://semver.org/).
 - **Containers feature:** full CRUD API (`apps/api/src/containers/`) with enum validation and the
   related vessel/port included in responses, 4 seeded containers, and a `/containers` page linked
   from the home page.
+- Unit tests for `PortsService` and `ContainersService` (mocked Prisma), including the 400 checks
+  for unknown vessel/port ids; the API suite now has 14 tests.
 
 ### Fixed
 - Creating or updating a container with an unknown `vesselId` or `currentPortId` now returns a 400
