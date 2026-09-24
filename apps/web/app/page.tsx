@@ -30,6 +30,18 @@ export default function Home() {
         >
           View vessels
         </Link>
+        <Link
+          href="/ports"
+          className="rounded-lg bg-navy px-4 py-2 font-semibold text-white hover:bg-navy-2"
+        >
+          View ports
+        </Link>
+        <Link
+          href="/containers"
+          className="rounded-lg bg-navy px-4 py-2 font-semibold text-white hover:bg-navy-2"
+        >
+          View containers
+        </Link>
         <a
           href="http://localhost:3001/docs"
           className="rounded-lg bg-blue px-4 py-2 font-semibold text-white hover:bg-blue-deep"
