@@ -26,6 +26,30 @@ const containers = [
   { isoNumber: 'TGHU3456789', type: 'DRY_20', ownerCode: 'TGHU', status: 'EMPTY', vesselImo: null, portLocode: null },
 ] as const;
 
+// Voyages point at a vessel (by IMO); each port call points at a port (by LOCODE).
+const voyages = [
+  {
+    reference: 'VY000001',
+    vesselImo: '9703291',
+    status: 'IN_PROGRESS',
+    portCalls: [
+      { sequence: 1, portLocode: 'SGSIN', plannedArrival: '2026-09-01T08:00:00Z', plannedDeparture: '2026-09-02T18:00:00Z' },
+      { sequence: 2, portLocode: 'NLRTM', plannedArrival: '2026-09-28T06:00:00Z', plannedDeparture: '2026-09-29T20:00:00Z' },
+    ],
+  },
+  {
+    reference: 'VY000002',
+    vesselImo: '9454436',
+    status: 'PLANNED',
+    portCalls: [
+      { sequence: 1, portLocode: 'FRLEH', plannedArrival: '2026-10-10T08:00:00Z', plannedDeparture: '2026-10-11T18:00:00Z' },
+      { sequence: 2, portLocode: 'NLRTM', plannedArrival: '2026-10-13T06:00:00Z', plannedDeparture: '2026-10-14T20:00:00Z' },
+    ],
+  },
+] as const;
+
+
+
 async function main() {
   for (const v of vessels) {
     await prisma.vessel.upsert({
@@ -59,6 +83,24 @@ async function main() {
   }
 
   console.log(`Seeded ${containers.length} containers.`);
+
+  for (const { vesselImo, portCalls, ...v } of voyages) {
+    const vessel = await prisma.vessel.findUniqueOrThrow({ where: { imo: vesselImo } });
+
+    const calls = [];
+    for (const { portLocode, ...pc } of portCalls) {
+      const port = await prisma.port.findUniqueOrThrow({ where: { locode: portLocode } }) ;
+      calls.push({ ...pc, portId: port.id });
+    }
+
+    await prisma.voyage.upsert({
+      where: { reference: v.reference },
+      create: { ...v, vesselId: vessel.id, portCalls: { create: calls } },
+      update: { ...v, vesselId: vessel.id, portCalls: { deleteMany: {} ,create: calls } },
+    });
+  }
+
+  console.log(`Seeded ${voyages.length} voyages.`);
 }
 
 main()

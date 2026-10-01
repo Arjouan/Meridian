@@ -44,6 +44,9 @@ and this project aims to follow [Semantic Versioning](https://semver.org/).
   from the home page.
 - Unit tests for `PortsService` and `ContainersService` (mocked Prisma), including the 400 checks
   for unknown vessel/port ids; the API suite now has 14 tests.
+- **Voyages feature:** `Voyage` and `PortCall` models, full CRUD API (`apps/api/src/voyages/`) with
+  ordered port calls created/replaced in one request, 2 seeded voyages, a `/voyages` page linked
+  from the home page, and 8 unit tests for `VoyagesService` (API suite: 22 tests).
 
 ### Fixed
 - Creating or updating a container with an unknown `vesselId` or `currentPortId` now returns a 400

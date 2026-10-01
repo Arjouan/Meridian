@@ -61,20 +61,22 @@ model Vessel {
   containers  Container[]
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
+  voyages     Voyage[]
 }
 
 model Port {
-  id        String      @id @default(cuid())
-  locode    String      @unique // UN/LOCODE, e.g. "FRLEH"
-  name      String
-  country   String // ISO country code, e.g. "FR"
-  latitude  Float
-  longitude Float
+  id         String      @id @default(cuid())
+  locode     String      @unique // UN/LOCODE, e.g. "FRLEH"
+  name       String
+  country    String // ISO country code, e.g. "FR"
+  latitude   Float
+  longitude  Float
   // A real PostGIS geometry(Point, 4326) column is added via a raw SQL migration in Phase 1;
   // lat/lng are kept here for convenience and API responses. See docs/ARCHITECTURE.md.
   containers Container[]
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
+  portCalls  PortCall[]
 }
 
 model Container {
@@ -89,4 +91,37 @@ model Container {
   vesselId      String?
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
+}
+
+enum VoyageStatus {
+  PLANNED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+model Voyage {
+  id        String       @id @default(cuid())
+  reference String       @unique // voyage reference number, e.g. "VY123456"
+  vessel    Vessel       @relation(fields: [vesselId], references: [id])
+  vesselId  String
+  status    VoyageStatus @default(PLANNED)
+  portCalls PortCall[]
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+model PortCall {
+  id               String    @id @default(cuid())
+  voyage           Voyage    @relation(fields: [voyageId], references: [id], onDelete: Cascade)
+  voyageId         String
+  port             Port      @relation(fields: [portId], references: [id])
+  portId           String
+  sequence         Int // 1, 2, 3… order of calls in the voyage
+  plannedArrival   DateTime?
+  plannedDeparture DateTime?
+  actualArrival    DateTime?
+  actualDeparture  DateTime?
+
+  @@unique([voyageId, sequence]) // a voyage can't have two calls with the same sequence number
 }

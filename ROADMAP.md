@@ -25,8 +25,8 @@ Legend: ✅ done · 🚧 in progress · ⬜ not started
 
 **Milestone:** manage vessels, containers, and ports through the API on a real database.
 
-## Phase 2 — Voyages & container tracking · ⬜
-- ⬜ Voyages with ordered port calls
+## Phase 2 — Voyages & container tracking · 🚧
+- ✅ Voyages with ordered port calls
 - ⬜ Tracking events stored as time-series (TimescaleDB)
 - ⬜ Derive a container's current status/location from its event stream
 - ⬜ Endpoints for full container history
